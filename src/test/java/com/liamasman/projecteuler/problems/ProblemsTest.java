@@ -19,7 +19,7 @@ public class ProblemsTest {
 
     @ParameterizedTest(name = "{0}: {1}")
     @ArgumentsSource(ProblemCaseArgumentsProvider.class)
-    void problemTest(final Problem problem, final TestCase testCase) throws Exception {
+    void problemTest(final Problem problem, final TestCase testCase) {
         final var input = testCase.input();
         final var result = problem.runProblem(input);
         final var expectedResult = testCase.solution();
