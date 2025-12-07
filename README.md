@@ -14,6 +14,10 @@ on Project Euler.
 
 ## How to build
 
+This project is written using Java 25.
+
+You must have an installation of a Java 25 JDK and set `JAVA_HOME` to point at it.
+
 Run
 
 ```shell
