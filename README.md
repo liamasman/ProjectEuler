@@ -1,6 +1,16 @@
 # Project Euler
 
-Implementations for solving Project Euler problems.
+Implementations for solving [Project Euler](https://projecteuler.net) problems.
+
+New problem implementations should be placed in `com.liamasman.projecteuler.problems`.
+
+Problems must have:
+
+* The `@Problem` annotation, specifying the problem id
+* The `@ProblemCase` annotation, specifying the problem input as provided by Project Euler
+
+A problem should also specify at least one `@TestCase`, typically given as the example
+on Project Euler.
 
 ## How to build
 
