@@ -19,6 +19,10 @@ public class Problem {
                 .id();
     }
 
+    public String getName() {
+        return method.getName();
+    }
+
     public String runProblem(final String[] input) {
         try {
             final Object instance = method.getDeclaringClass().getDeclaredConstructor().newInstance();

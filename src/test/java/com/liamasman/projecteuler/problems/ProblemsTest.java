@@ -40,7 +40,7 @@ public class ProblemsTest {
         {
             return Arrays.stream(problem.getTestCases())
                     .map(testCase -> Arguments.of(
-                            named(String.valueOf(problem.getId()), problem),
+                            named(String.format("%04d - %s", problem.getId(), problem.getName()), problem),
                             named(Arrays.toString(testCase.input()), testCase)
                     ));
         }
