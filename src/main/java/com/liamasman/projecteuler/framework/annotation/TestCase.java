@@ -7,5 +7,6 @@ import java.lang.annotation.*;
 @Repeatable(TestCases.class)
 public @interface TestCase {
     String[] input();
+
     String solution();
 }

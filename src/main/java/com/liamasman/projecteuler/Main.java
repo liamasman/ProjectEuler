@@ -12,8 +12,7 @@ public class Main {
         final int projectId;
         try {
             projectId = Integer.parseInt(args[0]);
-        } catch (final NumberFormatException e)
-        {
+        } catch (final NumberFormatException e) {
             IO.println("Invalid id: " + args[0]);
             printUsage();
             return;
@@ -24,13 +23,11 @@ public class Main {
                 .filter(p -> p.getId() == projectId)
                 .toList();
 
-        if (foundProblems.isEmpty())
-        {
+        if (foundProblems.isEmpty()) {
             IO.println("Found no problems with id: " + projectId);
             return;
         }
-        if (foundProblems.size() > 1)
-        {
+        if (foundProblems.size() > 1) {
             IO.println("Found more than one problem with id: " + projectId);
             return;
         }
@@ -42,8 +39,7 @@ public class Main {
         IO.println(result);
     }
 
-    private static void printUsage()
-    {
+    private static void printUsage() {
         IO.println("./project-euler <problem-id>");
     }
 }

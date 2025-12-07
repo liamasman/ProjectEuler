@@ -36,8 +36,7 @@ public class ProblemsTest {
                     .flatMap(this::getArgumentsForProblem);
         }
 
-        private Stream<Arguments> getArgumentsForProblem(final com.liamasman.projecteuler.framework.runner.Problem problem)
-        {
+        private Stream<Arguments> getArgumentsForProblem(final com.liamasman.projecteuler.framework.runner.Problem problem) {
             return Arrays.stream(problem.getTestCases())
                     .map(testCase -> Arguments.of(
                             named(String.format("%04d - %s", problem.getId(), problem.getName()), problem),
