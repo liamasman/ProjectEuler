@@ -13,11 +13,12 @@ public class P0004 {
     public int largestPalindromeProduct(final String[] input) {
         final int productDigitsLength = Integer.parseInt(input[0]);
         final int maxValue = NumberUtil.POWERS_OF_TEN[productDigitsLength] - 1;
+        final int minValue = NumberUtil.POWERS_OF_TEN[productDigitsLength - 1];
 
         int largestPalindrome = 0;
-        for (int a = maxValue; a > 0; a--)
+        for (int a = maxValue; a >= minValue; a--)
         {
-            for (int b = maxValue; b > 0; b--)
+            for (int b = a; b >= minValue; b--)
             {
                 final int product = a *  b;
                 if (product < largestPalindrome) {
