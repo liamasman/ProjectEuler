@@ -34,17 +34,13 @@ public class P0004 {
         return largestPalindrome;
     }
 
-    private boolean isPalindrome(int number)
-    {
-        final String asString = Integer.toString(number);
-
-        for (int i = 0; i < asString.length() / 2; i++)
-        {
-            if (asString.charAt(i) != asString.charAt(asString.length() - i - 1))
-            {
-                return false;
-            }
+    private boolean isPalindrome(final int number) {
+        int reversed = 0;
+        int original = number;
+        while (original > 0) {
+            reversed = reversed * 10 + original % 10;
+            original /= 10;
         }
-        return true;
+        return number == reversed;
     }
 }
