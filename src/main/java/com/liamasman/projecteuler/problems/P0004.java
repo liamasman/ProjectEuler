@@ -20,7 +20,7 @@ public class P0004 {
         {
             for (int b = a; b >= minValue; b--)
             {
-                final int product = a *  b;
+                final int product = a * b;
                 if (product < largestPalindrome) {
                     break;
                 }
