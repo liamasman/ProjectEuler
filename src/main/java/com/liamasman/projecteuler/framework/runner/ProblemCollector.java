@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class ProblemCollector {
+    public static final String PROBLEMS_PACKAGE = "com.liamasman.projecteuler.problems";
     private final String problemsPackage;
 
     public ProblemCollector(final String problemsPackage) {

@@ -1,41 +1,40 @@
 package com.liamasman.projecteuler;
 
-import com.liamasman.projecteuler.framework.runner.ProblemCollector;
+import com.liamasman.projecteuler.cli.CliParser;
+import com.liamasman.projecteuler.framework.runner.Problem;
+
+import java.util.Arrays;
 
 public class Main {
     static void main(final String[] args) {
-        if (args.length < 1) {
-            printUsage();
-            return;
+
+        final var runParameters = CliParser.parseInput(args);
+
+        final var problem = runParameters.problem();
+        switch (runParameters.runMode()) {
+            case PROBLEM -> {
+                runProblemCase(problem);
+            }
+            case TEST -> {
+                runTestCases(problem);
+            }
         }
+    }
 
-        final int projectId;
-        try {
-            projectId = Integer.parseInt(args[0]);
-        } catch (final NumberFormatException e) {
-            IO.println("Invalid id: " + args[0]);
-            printUsage();
-            return;
-        }
+    private static void runTestCases(final Problem problem) {
+        Arrays.stream(problem.getTestCases()).forEach(testcase -> {
+            final var result = problem.runProblem(testcase.input());
+            if (testcase.solution().equals(result)) {
+                IO.println(Arrays.toString(testcase.input()) + ": " + result + " passed ✔");
+            } else {
+                IO.println(Arrays.toString(testcase.input()) + ": " + result + " failed ❌. Expected "
+                        + testcase.solution());
+            }
+        });
+    }
 
-        final ProblemCollector problemCollector = new ProblemCollector("com.liamasman.projecteuler.problems");
-        final var foundProblems = problemCollector.getProblems()
-                .filter(p -> p.getId() == projectId)
-                .toList();
-
-        if (foundProblems.isEmpty()) {
-            IO.println("Found no problems with id: " + projectId);
-            return;
-        }
-        if (foundProblems.size() > 1) {
-            IO.println("Found more than one problem with id: " + projectId);
-            return;
-        }
-
-        final var problem = foundProblems.getFirst();
-        final var problemCase = problem.getProblemCase();
-        final var result = problem.runProblem(problemCase.input());
-
+    private static void runProblemCase(final Problem problem) {
+        final var result = problem.runProblem(problem.getProblemCase().input());
         IO.println(result);
     }
 
