@@ -29,10 +29,5 @@ Run
 Run the generated script:
 
 ```shell
-build/install/project-euler/bin/project-euler <problem number>
+build/install/project-euler/bin/project-euler [--time] [--input <custom input>] [--test] --problem <problem number>
 ```
-
-## To Dos
-
-* Run problem with new input from the command line
-* Add optional timing to output

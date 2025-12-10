@@ -12,12 +12,16 @@ public class Main {
         final var runParameters = CliParser.parseInput(args);
 
         final var problem = runParameters.problem();
-        switch (runParameters.runMode()) {
-            case PROBLEM -> {
-                runProblemCase(problem, runParameters);
-            }
-            case TEST -> {
-                runTestCases(problem, runParameters);
+        if (runParameters.customInput().isPresent()) {
+            runProblemCase(problem, new String[]{runParameters.customInput().get()}, runParameters);
+        } else {
+            switch (runParameters.runMode()) {
+                case PROBLEM -> {
+                    runProblemCase(problem, problem.getProblemCase().input(), runParameters);
+                }
+                case TEST -> {
+                    runTestCases(problem, runParameters);
+                }
             }
         }
     }
@@ -35,8 +39,8 @@ public class Main {
         });
     }
 
-    private static void runProblemCase(final Problem problem, final RunParameters runParameters) {
-        final var result = problem.runProblem(problem.getProblemCase().input());
+    private static void runProblemCase(final Problem problem, final String[] input, final RunParameters runParameters) {
+        final var result = problem.runProblem(input);
         IO.println(result.solution());
         if (runParameters.includeTimings()) {
             IO.println("(" + result.microsTaken() + "µs)");
