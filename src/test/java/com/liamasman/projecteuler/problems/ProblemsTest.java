@@ -21,7 +21,7 @@ public class ProblemsTest {
     @ArgumentsSource(ProblemCaseArgumentsProvider.class)
     void problemTest(final Problem problem, final TestCase testCase) {
         final var input = testCase.input();
-        final var result = problem.runProblem(input);
+        final var result = problem.runProblem(input, runParameters);
         final var expectedResult = testCase.solution();
         assertEquals(expectedResult, result);
     }

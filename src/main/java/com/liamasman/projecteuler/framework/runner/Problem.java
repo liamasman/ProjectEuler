@@ -5,7 +5,7 @@ import com.liamasman.projecteuler.framework.annotation.TestCase;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Objects;
+import java.time.Duration;
 
 public class Problem {
     private final Method method;
@@ -23,10 +23,16 @@ public class Problem {
         return method.getName();
     }
 
-    public String runProblem(final String[] input) {
+    public RunResult runProblem(final String[] input) {
         try {
             final Object instance = method.getDeclaringClass().getDeclaredConstructor().newInstance();
-            return Objects.toString(method.invoke(instance, (Object) input));
+            final long startTime = System.nanoTime();
+            final Object result = method.invoke(instance, (Object) input);
+            final long endTime = System.nanoTime();
+
+            final Duration duration = Duration.ofNanos(endTime - startTime);
+            return new RunResult(String.valueOf(result),
+                    duration.toNanos() / 1000L);
         } catch (final NoSuchMethodException | InstantiationException |
                        IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);

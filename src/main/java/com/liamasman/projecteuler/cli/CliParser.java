@@ -13,6 +13,7 @@ public class CliParser {
     {
         RunMode runMode = RunMode.PROBLEM;
         OptionalInt problemId = OptionalInt.empty();
+        boolean includeTimings = false;
         try {
             for (int i = 0; i < args.length; i++) {
                 if ("-t".equals(args[i]) || "--test".equals(args[i])) {
@@ -21,6 +22,8 @@ public class CliParser {
                     problemId = OptionalInt.of(Integer.parseInt(args[++i]));
                 } else if (args[i].startsWith("--problem=")) {
                     problemId = OptionalInt.of(Integer.parseInt(args[i].substring("--problem=".length())));
+                } else if ("--time".equals(args[i])) {
+                    includeTimings = true;
                 }
                 else if (i == args.length - 1 && !args[i].startsWith("-"))
                 {
@@ -49,6 +52,6 @@ public class CliParser {
             throw new IllegalArgumentException("Could not find problem with id: " + finalProblemId.getAsInt());
         }
 
-        return new RunParameters(problem.get(), runMode);
+        return new RunParameters(problem.get(), runMode, includeTimings);
     }
 }
