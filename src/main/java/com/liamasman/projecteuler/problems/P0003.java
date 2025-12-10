@@ -5,8 +5,6 @@ import com.liamasman.projecteuler.framework.annotation.ProblemCase;
 import com.liamasman.projecteuler.framework.annotation.TestCase;
 import com.liamasman.projecteuler.util.SieveOfEratosthenes;
 
-import java.util.stream.StreamSupport;
-
 public class P0003 {
 
     @Problem(id = 3)
@@ -18,8 +16,8 @@ public class P0003 {
         final long[] largestPrime = new long[1];
 
         final SieveOfEratosthenes sieve = new SieveOfEratosthenes();
-        StreamSupport.stream(sieve.spliterator(), false)
-                .takeWhile(p -> limit[0] > 1)
+        sieve.stream()
+                .takeWhile(_p -> limit[0] > 1)
                 .forEach(p -> {
                     while (limit[0] % p == 0)
                     {

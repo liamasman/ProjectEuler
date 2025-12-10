@@ -2,6 +2,8 @@ package com.liamasman.projecteuler.util;
 
 import javax.annotation.Nonnull;
 import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class SieveOfEratosthenes implements Iterable<Long>{
     private final List<Long> primes;
@@ -51,5 +53,9 @@ public class SieveOfEratosthenes implements Iterable<Long>{
     @Override
     public Spliterator<Long> spliterator() {
         return Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED | Spliterator.NONNULL | Spliterator.IMMUTABLE);
+    }
+
+    public Stream<Long> stream() {
+        return StreamSupport.stream(spliterator(), false);
     }
 }

@@ -5,8 +5,6 @@ import com.liamasman.projecteuler.framework.annotation.ProblemCase;
 import com.liamasman.projecteuler.framework.annotation.TestCase;
 import com.liamasman.projecteuler.util.SieveOfEratosthenes;
 
-import java.util.stream.StreamSupport;
-
 public class P0007 {
     @Problem(id = 7)
     @ProblemCase(input = "10001")
@@ -15,7 +13,7 @@ public class P0007 {
         final var limit = Integer.parseInt(input[0]);
 
         final var sieve = new SieveOfEratosthenes();
-        return StreamSupport.stream(sieve.spliterator(), false)
+        return sieve.stream()
                 .skip(limit - 1)
                 .findFirst()
                 .get();
